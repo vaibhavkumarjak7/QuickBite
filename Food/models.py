@@ -10,7 +10,7 @@ class Item(models.Model):
     item_image = models.CharField(max_length=500,default="https://metropizza.com.au/wp-content/uploads/2023/06/food-placeholder.jpeg")
     
     def __str__(self):
-        return self.item_name
+        return self.item_name + " : " + str(self.item_price)
     
     def get_absolute_url(self):
         return reverse('Food:index')
