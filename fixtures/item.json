@@ -1,0 +1,275 @@
+[
+{
+    "model": "Food.item",
+    "pk": 1,
+    "fields": {
+        "user_name": 1,
+        "item_name": "Burger",
+        "item_desc": "Burger desc",
+        "item_price": "12.00",
+        "item_image": "data:image/webp;base64,UklGRrAqAABXRUJQVlA4IKQqAACQowCdASpQAeoAPp1Cm0klo6Korxd5+RATiWRuLdW8hvk0Ze1HtcfCpEfyr3W/MPwW/EcF/0fL59o75H/J9V36r9gr9ivUJ6Yv8H6Jv3E9Yn07/4H1AP7T1N3oQdMX/av/RbXnJfF30iiBXG/dFOX/a+BPy+1CMVO1yAN3W02hW4oE+UV33f2v1FemWyQdf+EZDcdSkX5wWJaa5SLKZdu//hHD0Zu+/effvDNJWvzF6DkkkgoFqXldM17bzyeoLljnLTs9YZIEC+uZZlqBab1DRfM0lWoXocHtt+VUpNByVeq5v3n36jreWDtgfYv4aPrFGBW+AgsuerT1bN7ZGaUVtvs61h/xReUmVt41wjiaOC/HLB9awVel9kVX7XOs1xKEcL3j3VZ+55XdMS2dnVugrRsaZZn+tGCp1pVgpo79tp1mb/vhMsdNaFy64g3uqfc3V",
+        "is_available": true,
+        "created_at": "2026-05-20T15:09:18.336Z"
+    }
+},
+{
+    "model": "Food.item",
+    "pk": 2,
+    "fields": {
+        "user_name": 1,
+        "item_name": "Margherita Pizza",
+        "item_desc": "Classic Italian pizza with mozzarella and tomato",
+        "item_price": "8.99",
+        "item_image": "https://metropizza.com.au/wp-content/uploads/2023/06/food-placeholder.jpeg",
+        "is_available": true,
+        "created_at": "2026-05-21T17:32:39.654Z"
+    }
+},
+{
+    "model": "Food.item",
+    "pk": 3,
+    "fields": {
+        "user_name": 1,
+        "item_name": "Cheeseburger",
+        "item_desc": "Beef patty with cheese, lettuce and tomato",
+        "item_price": "6.49",
+        "item_image": "https://metropizza.com.au/wp-content/uploads/2023/06/food-placeholder.jpeg",
+        "is_available": true,
+        "created_at": "2026-05-21T17:33:35.388Z"
+    }
+},
+{
+    "model": "Food.item",
+    "pk": 4,
+    "fields": {
+        "user_name": 1,
+        "item_name": "Caesar Salad",
+        "item_desc": "Crisp romaine with parmesan and croutons",
+        "item_price": "5.99",
+        "item_image": "https://metropizza.com.au/wp-content/uploads/2023/06/food-placeholder.jpeg",
+        "is_available": true,
+        "created_at": "2026-05-21T17:33:35.394Z"
+    }
+},
+{
+    "model": "Food.item",
+    "pk": 5,
+    "fields": {
+        "user_name": 1,
+        "item_name": "Chicken Tacos",
+        "item_desc": "Soft tortillas with grilled chicken and salsa",
+        "item_price": "7.29",
+        "item_image": "https://metropizza.com.au/wp-content/uploads/2023/06/food-placeholder.jpeg",
+        "is_available": true,
+        "created_at": "2026-05-21T17:33:35.404Z"
+    }
+},
+{
+    "model": "Food.item",
+    "pk": 6,
+    "fields": {
+        "user_name": 1,
+        "item_name": "Sushi Platter",
+        "item_desc": "Assorted rolls with tuna, salmon and avocado",
+        "item_price": "12.99",
+        "item_image": "https://metropizza.com.au/wp-content/uploads/2023/06/food-placeholder.jpeg",
+        "is_available": true,
+        "created_at": "2026-05-21T17:33:35.409Z"
+    }
+},
+{
+    "model": "Food.item",
+    "pk": 7,
+    "fields": {
+        "user_name": 1,
+        "item_name": "Pasta Alfredo",
+        "item_desc": "Creamy white sauce pasta with mushrooms",
+        "item_price": "9.49",
+        "item_image": "https://metropizza.com.au/wp-content/uploads/2023/06/food-placeholder.jpeg",
+        "is_available": true,
+        "created_at": "2026-05-21T17:33:35.419Z"
+    }
+},
+{
+    "model": "Food.item",
+    "pk": 8,
+    "fields": {
+        "user_name": 1,
+        "item_name": "Falafel Wrap",
+        "item_desc": "Middle Eastern wrap with chickpea patties",
+        "item_price": "6.99",
+        "item_image": "https://metropizza.com.au/wp-content/uploads/2023/06/food-placeholder.jpeg",
+        "is_available": true,
+        "created_at": "2026-05-21T17:33:35.424Z"
+    }
+},
+{
+    "model": "Food.item",
+    "pk": 9,
+    "fields": {
+        "user_name": 1,
+        "item_name": "Pad Thai",
+        "item_desc": "Thai stir-fried noodles with peanuts and veggies",
+        "item_price": "10.49",
+        "item_image": "https://metropizza.com.au/wp-content/uploads/2023/06/food-placeholder.jpeg",
+        "is_available": true,
+        "created_at": "2026-05-21T17:33:35.426Z"
+    }
+},
+{
+    "model": "Food.item",
+    "pk": 10,
+    "fields": {
+        "user_name": 1,
+        "item_name": "French Fries",
+        "item_desc": "Crispy golden potato fries with salt",
+        "item_price": "3.49",
+        "item_image": "https://metropizza.com.au/wp-content/uploads/2023/06/food-placeholder.jpeg",
+        "is_available": true,
+        "created_at": "2026-05-21T17:33:35.428Z"
+    }
+},
+{
+    "model": "Food.item",
+    "pk": 11,
+    "fields": {
+        "user_name": 1,
+        "item_name": "Veggie Burger",
+        "item_desc": "Plant-based patty with lettuce and tomato",
+        "item_price": "6.29",
+        "item_image": "https://metropizza.com.au/wp-content/uploads/2023/06/food-placeholder.jpeg",
+        "is_available": true,
+        "created_at": "2026-05-21T17:33:35.436Z"
+    }
+},
+{
+    "model": "Food.item",
+    "pk": 12,
+    "fields": {
+        "user_name": 1,
+        "item_name": "Butter Chicken",
+        "item_desc": "Indian-style chicken in creamy tomato sauce",
+        "item_price": "11.49",
+        "item_image": "https://metropizza.com.au/wp-content/uploads/2023/06/food-placeholder.jpeg",
+        "is_available": true,
+        "created_at": "2026-05-21T17:33:35.439Z"
+    }
+},
+{
+    "model": "Food.item",
+    "pk": 13,
+    "fields": {
+        "user_name": 1,
+        "item_name": "Ramen Bowl",
+        "item_desc": "Japanese noodle soup with egg and pork",
+        "item_price": "10.99",
+        "item_image": "https://metropizza.com.au/wp-content/uploads/2023/06/food-placeholder.jpeg",
+        "is_available": true,
+        "created_at": "2026-05-21T17:33:35.441Z"
+    }
+},
+{
+    "model": "Food.item",
+    "pk": 14,
+    "fields": {
+        "user_name": 1,
+        "item_name": "Greek Salad",
+        "item_desc": "Feta cheese, olives, cucumber and tomatoes",
+        "item_price": "7.99",
+        "item_image": "https://metropizza.com.au/wp-content/uploads/2023/06/food-placeholder.jpeg",
+        "is_available": true,
+        "created_at": "2026-05-21T17:33:35.443Z"
+    }
+},
+{
+    "model": "Food.item",
+    "pk": 15,
+    "fields": {
+        "user_name": 1,
+        "item_name": "BBQ Ribs",
+        "item_desc": "Slow cooked pork ribs with barbecue sauce",
+        "item_price": "14.99",
+        "item_image": "https://metropizza.com.au/wp-content/uploads/2023/06/food-placeholder.jpeg",
+        "is_available": true,
+        "created_at": "2026-05-21T17:33:35.453Z"
+    }
+},
+{
+    "model": "Food.item",
+    "pk": 16,
+    "fields": {
+        "user_name": 1,
+        "item_name": "Shawarma",
+        "item_desc": "Grilled meat wrap with garlic sauce",
+        "item_price": "8.49",
+        "item_image": "https://metropizza.com.au/wp-content/uploads/2023/06/food-placeholder.jpeg",
+        "is_available": true,
+        "created_at": "2026-05-21T17:33:35.455Z"
+    }
+},
+{
+    "model": "Food.item",
+    "pk": 17,
+    "fields": {
+        "user_name": 1,
+        "item_name": "Pancakes",
+        "item_desc": "Stack of fluffy pancakes with maple syrup",
+        "item_price": "5.79",
+        "item_image": "https://metropizza.com.au/wp-content/uploads/2023/06/food-placeholder.jpeg",
+        "is_available": true,
+        "created_at": "2026-05-21T17:33:35.458Z"
+    }
+},
+{
+    "model": "Food.item",
+    "pk": 18,
+    "fields": {
+        "user_name": 1,
+        "item_name": "Mutton Biryani",
+        "item_desc": "Fragrant rice with spiced mutton",
+        "item_price": "12.29",
+        "item_image": "https://metropizza.com.au/wp-content/uploads/2023/06/food-placeholder.jpeg",
+        "is_available": true,
+        "created_at": "2026-05-21T17:33:35.462Z"
+    }
+},
+{
+    "model": "Food.item",
+    "pk": 19,
+    "fields": {
+        "user_name": 1,
+        "item_name": "Spring Rolls",
+        "item_desc": "Crispy rolls stuffed with vegetables",
+        "item_price": "4.99",
+        "item_image": "https://metropizza.com.au/wp-content/uploads/2023/06/food-placeholder.jpeg",
+        "is_available": true,
+        "created_at": "2026-05-21T17:33:35.473Z"
+    }
+},
+{
+    "model": "Food.item",
+    "pk": 20,
+    "fields": {
+        "user_name": 1,
+        "item_name": "Fish and Chips",
+        "item_desc": "British-style fried fish with fries",
+        "item_price": "9.99",
+        "item_image": "https://metropizza.com.au/wp-content/uploads/2023/06/food-placeholder.jpeg",
+        "is_available": true,
+        "created_at": "2026-05-21T17:33:35.476Z"
+    }
+},
+{
+    "model": "Food.item",
+    "pk": 21,
+    "fields": {
+        "user_name": 1,
+        "item_name": "Ice Cream Sundae",
+        "item_desc": "Vanilla ice cream topped with chocolate sauce",
+        "item_price": "4.59",
+        "item_image": "https://metropizza.com.au/wp-content/uploads/2023/06/food-placeholder.jpeg",
+        "is_available": true,
+        "created_at": "2026-05-21T17:33:35.487Z"
+    }
+}
+]
