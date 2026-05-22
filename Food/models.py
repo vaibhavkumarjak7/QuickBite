@@ -1,6 +1,7 @@
 from django.db import models
 from django.urls import reverse
 from django.contrib.auth.models import User
+from .managers import ItemManager
 # Create your models here.
 class Item(models.Model):
     class Meta:
@@ -16,6 +17,7 @@ class Item(models.Model):
     is_available = models.BooleanField(default=True)
     created_at = models.DateTimeField(auto_now_add=True)
     
+    objects = ItemManager()
     
     def __str__(self):
         return self.item_name + " : " + str(self.item_price)
