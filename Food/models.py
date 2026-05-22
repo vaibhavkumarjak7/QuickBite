@@ -3,6 +3,11 @@ from django.urls import reverse
 from django.contrib.auth.models import User
 # Create your models here.
 class Item(models.Model):
+    class Meta:
+        indexes = [
+            models.Index(fields=['user_name','item_price']),
+        ]
+    
     user_name = models.ForeignKey(User,on_delete=models.CASCADE,default=1)
     item_name = models.CharField(max_length=100,db_index=True)
     item_desc = models.TextField()
