@@ -6,15 +6,18 @@ from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView,UpdateView,DeleteView
 from django.urls import reverse_lazy
-
+from django.core.paginator import Paginator
 # Create your views here.
-# @login_required
-# def index(request):
-#     item_list = Item.objects.all()
-#     context = {
-#         'item_list': item_list,
-#     }
-#     return render(request, 'Food/index.html', context)
+@login_required
+def index(request):
+    item_list = Item.objects.all()
+    paginator = Paginator(item_list,5)
+    page_number = request.GET.get("page")
+    page_obj = paginator.get_page(page_number)
+    context = {
+        'page_obj': page_obj,
+    }
+    return render(request, 'Food/index.html', context)
 
 class IndexClassView(ListView):
     model = Item
