@@ -1,10 +1,27 @@
-{% extends 'Food/base.html' %}
+{% extends "Food/base.html" %} 
 {% block body %}
 
-<form method="POST">
-    {% csrf_token %}
-    {{ form }}
-    <button type="submit">Save</button>
-</form>
+<div class="flex flex-col justify-center items-center min-h-10 p-10">
+    <h1>Add Item</h1>
+    <form method="POST" class="shadow-lg space-y-6 p-10 w-96">
+        {% csrf_token %}
+        
+        {% if form.non_field_errors %}
+            {% for error in form.non_field_errors %}
+                
+                <p class="bg-red-500 p-2 text-white">{{error}}</p>
+
+            {% endfor %}
+        {% endif %}
+
+        {% for field in form %}
+            <div>
+                <label>{{ field.label }}</label>
+                <div class="border rounded p-2">{{ field }}</div>
+            </div>
+        {% endfor %}
+        <button type="submit" class="bg-blue-500 w-full py-2 text-white">Add</button>
+    </form>
+</div>
 
 {% endblock %}

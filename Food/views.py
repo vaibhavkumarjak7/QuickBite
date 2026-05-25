@@ -36,25 +36,25 @@ class FoodDetail(DetailView):
     template_name = 'Food/detail.html'
     context_object_name = 'item'
 
-# def create_item(request):
-#     form = ItemForm(request.POST or None)
-#     if request.method=="POST":
-#         if form.is_valid():
-#             form.save()
-#             return redirect("Food:index")
+def create_item(request):
+    form = ItemForm(request.POST or None)
+    if request.method=="POST":
+        if form.is_valid():
+            form.save()
+            return redirect("Food:index")
         
-#     context = {
-#         'form' : form,
-#     }
-#     return render(request,'food/item-form.html',context)
+    context = {
+        'form' : form,
+    }
+    return render(request,'food/item-form.html',context)
 
-class ItemCreateView(CreateView):
-    model = Item
-    fields = ['item_name','item_desc','item_price','item_image']
+# class ItemCreateView(CreateView):
+#     model = Item
+#     fields = ['item_name','item_desc','item_price','item_image']
     
-    def form_valid(self,form):
-        form.instance.user_name = self.request.user
-        return super().form_valid(form)
+#     def form_valid(self,form):
+#         form.instance.user_name = self.request.user
+#         return super().form_valid(form)
 
 # def update_item(request,id):
 #     item = Item.objects.get(id=id)
