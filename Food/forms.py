@@ -12,3 +12,10 @@ class ItemForm(forms.ModelForm):
             "item_price":forms.NumberInput(attrs={"placeholder":"30","required":True}),
             "item_image":forms.URLInput(attrs={"placeholder":"https://www.google.com","required":False}),
         }
+        
+    def clean_item_price(self):
+        price = self.cleaned_data["item_price"]
+        if price<0:
+            raise forms.ValidationError("Price cannot be negative")
+        
+        return price
