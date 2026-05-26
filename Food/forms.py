@@ -19,3 +19,13 @@ class ItemForm(forms.ModelForm):
             raise forms.ValidationError("Price cannot be negative")
         
         return price
+    
+    def clean(self):
+        cleaned = super().clean()
+        name = cleaned.get("item_name")
+        desc = cleaned.get("item_desc")
+        
+        if name and desc and name.lower() in desc.lower():
+            self.add_error("item_desc","Description should add new info beyond item name")
+
+        return cleaned
