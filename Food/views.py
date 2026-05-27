@@ -7,7 +7,17 @@ from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView,UpdateView,DeleteView
 from django.urls import reverse_lazy
 from django.core.paginator import Paginator
+from .serializers import ItemSerializer
+from rest_framework.response import Response
+from rest_framework.decorators import api_view
 # Create your views here.
+
+@api_view(["GET"])
+def item_list_api(request):
+    items = Item.objects.all()
+    serializer = ItemSerializer(items,many=True)
+    return Response(serializer.data)
+
 @login_required
 def index(request):
     item_list = Item.objects.all()
