@@ -18,6 +18,12 @@ def item_list_api(request):
     serializer = ItemSerializer(items,many=True)
     return Response(serializer.data)
 
+@api_view(["GET"])
+def item_detail_api(request,pk):
+    item =  Item.objects.get(pk=pk)
+    serializer = ItemSerializer(item)
+    return Response(serializer.data)
+    
 @login_required
 def index(request):
     item_list = Item.objects.all()
