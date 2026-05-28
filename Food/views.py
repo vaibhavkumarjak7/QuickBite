@@ -24,7 +24,7 @@ def item_list_api(request):
             serializer.save()
             return Response(serializer.data)
 
-@api_view(["GET","PUT"])
+@api_view(["GET","PUT","DELETE"])
 def item_detail_api(request,pk):
     item =  Item.objects.get(pk=pk)
     if request.method=="GET":
@@ -35,6 +35,9 @@ def item_detail_api(request,pk):
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data)
+    elif request.method=="DELETE":
+        item.delete()
+        return Response({"message":"Item Deleted"})
 
 @login_required
 def index(request):
