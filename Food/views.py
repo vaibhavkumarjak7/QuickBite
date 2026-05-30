@@ -10,8 +10,13 @@ from django.core.paginator import Paginator
 from .serializers import ItemSerializer
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
+from rest_framework import viewsets
 # Create your views here.
 
+class ItemViewSet(viewsets.ModelViewSet):
+    queryset = Item.objects.all()
+    serializer_class = ItemSerializer
+    
 @api_view(["GET", "POST"])
 def item_list_api(request):
     if request.method=="GET":

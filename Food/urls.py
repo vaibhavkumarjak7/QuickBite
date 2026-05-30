@@ -1,10 +1,15 @@
-from django.urls import path
+from django.urls import path,include
 from . import views
+from rest_framework.routers import DefaultRouter
+
+router = DefaultRouter()
+router.register(r"items",views.ItemViewSet,basename='item')
 
 app_name = 'Food'
 urlpatterns = [
-    path('api/items/',views.item_list_api,name='item_list_api'),
-    path("api/items/<int:pk>/",views.item_detail_api,name='item_detail_api'),
+    path("api/",include(router.urls)),
+    # path('api/items/',views.item_list_api,name='item_list_api'),
+    # path("api/items/<int:pk>/",views.item_detail_api,name='item_detail_api'),
     # /food/
     path('',views.index,name='index'),
     # /food/1
