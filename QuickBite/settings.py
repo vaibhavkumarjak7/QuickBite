@@ -34,6 +34,7 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'rest_framework',
+    'rest_framework.authtoken',
     'users.apps.UsersConfig',
     'Food.apps.FoodConfig',
     'django.contrib.admin',
@@ -152,3 +153,12 @@ LOGIN_URL = 'users:login'
 MEDIA_ROOT = os.path.join(BASE_DIR,'pictures')
 
 MEDIA_URL = '/pictures/'
+
+REST_FRAMEWORK = {
+    "DEFAULT_AUTHENTICATION_CLASSES" : [
+        'rest_framework.authentication.TokenAuthentication',
+    ],
+    "DEFAULT_PERMISSION_CLASSES" : [
+        'rest_framework.permissions.AllowAny',
+    ]
+}
