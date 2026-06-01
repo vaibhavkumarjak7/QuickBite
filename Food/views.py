@@ -18,7 +18,7 @@ from rest_framework.authentication import TokenAuthentication
 class ItemViewSet(viewsets.ModelViewSet):
     queryset = Item.objects.all()
     serializer_class = ItemSerializer
-    authentication_classes = [TokenAuthentication]
+    # authentication_classes = [TokenAuthentication]
     permission_classes = [IsAuthenticatedOrReadOnly]
     
 @api_view(["GET", "POST"])
