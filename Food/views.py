@@ -13,13 +13,14 @@ from rest_framework.decorators import api_view
 from rest_framework import viewsets
 from rest_framework.permissions import IsAuthenticatedOrReadOnly
 from rest_framework.authentication import TokenAuthentication
+from .permissions import IsOwnerOrReadOnly
 # Create your views here.
 
 class ItemViewSet(viewsets.ModelViewSet):
     queryset = Item.objects.all()
     serializer_class = ItemSerializer
     # authentication_classes = [TokenAuthentication]
-    permission_classes = [IsAuthenticatedOrReadOnly]
+    permission_classes = [IsOwnerOrReadOnly]
     
 @api_view(["GET", "POST"])
 def item_list_api(request):
