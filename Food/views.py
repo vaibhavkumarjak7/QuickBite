@@ -22,6 +22,9 @@ class ItemViewSet(viewsets.ModelViewSet):
     # authentication_classes = [TokenAuthentication]
     permission_classes = [IsOwnerOrReadOnly]
     
+    def perform_create(self, serializer):
+        serializer.save(user_name=self.request.user)
+    
 @api_view(["GET", "POST"])
 def item_list_api(request):
     if request.method=="GET":
