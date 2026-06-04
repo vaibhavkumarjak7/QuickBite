@@ -35,6 +35,7 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     'rest_framework',
     'rest_framework.authtoken',
+    'django_filters',
     'users.apps.UsersConfig',
     'Food.apps.FoodConfig',
     'django.contrib.admin',
@@ -157,9 +158,15 @@ MEDIA_URL = '/pictures/'
 REST_FRAMEWORK = {
     "DEFAULT_PAGINATION_CLASS" : "rest_framework.pagination.PageNumberPagination",
     "PAGE_SIZE" : 5,
+
+    "DEFAULT_FILTER_BACKENDS" : [
+        "django_filters.rest_framework.DjangoFilterBackend",
+    ],
+    
     "DEFAULT_AUTHENTICATION_CLASSES" : [
         'rest_framework_simplejwt.authentication.JWTAuthentication',
     ],
+
     "DEFAULT_PERMISSION_CLASSES" : [
         'rest_framework.permissions.AllowAny',
     ]
