@@ -15,7 +15,7 @@ from rest_framework.permissions import IsAuthenticatedOrReadOnly
 from rest_framework.authentication import TokenAuthentication
 from .permissions import IsOwnerOrReadOnly
 from django_filters.rest_framework import DjangoFilterBackend
-from rest_framework.filters import OrderingFilter
+from rest_framework.filters import OrderingFilter,SearchFilter
 # Create your views here.
 
 class ItemViewSet(viewsets.ModelViewSet):
@@ -23,9 +23,10 @@ class ItemViewSet(viewsets.ModelViewSet):
     serializer_class = ItemSerializer
     # authentication_classes = [TokenAuthentication]
     permission_classes = [IsOwnerOrReadOnly]
-    filter_backends = [DjangoFilterBackend,OrderingFilter]
+    filter_backends = [DjangoFilterBackend,OrderingFilter,SearchFilter]
     filterset_fields = ["item_name","item_price"]
     ordering_fields = ["item_name","item_price"]
+    search_fields = ["item_name","item_desc","item_price"]
     
     def perform_create(self, serializer):
         serializer.save(user_name=self.request.user)
