@@ -18,3 +18,8 @@ class ItemSerializer(serializers.ModelSerializer):
             raise serializers.ValidationError("Price must be positive")
         return value
         
+    def validate(self, data):
+        if data["item_name"].lower() == data["item_desc"].lower():
+            raise serializers.ValidationError("Item name and description must not be same")
+        return data
+        
