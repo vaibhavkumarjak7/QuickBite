@@ -28,8 +28,8 @@ class ItemViewSet(viewsets.ModelViewSet):
     ordering_fields = ["item_name","item_price"]
     search_fields = ["item_name","item_desc","item_price"]
     
-    def perform_create(self, serializer):
-        serializer.save(user_name=self.request.user)
+    # def perform_create(self, serializer):
+    #     serializer.save(user_name=self.request.user)
     
 @api_view(["GET", "POST"])
 def item_list_api(request):

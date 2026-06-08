@@ -14,7 +14,7 @@ class Item(models.Model):
     item_name = models.CharField(max_length=100,db_index=True)
     item_desc = models.TextField()
     item_price = models.DecimalField(max_digits=10, decimal_places=2, db_index=True)
-    item_image = models.URLField(max_length=500,default="https://metropizza.com.au/wp-content/uploads/2023/06/food-placeholder.jpeg")
+    item_image = models.ImageField(upload_to="item_images/",blank=True,null=True)
     is_available = models.BooleanField(default=True)
     created_at = models.DateTimeField(auto_now_add=True)
     
