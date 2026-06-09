@@ -1,5 +1,5 @@
 from django.shortcuts import render,redirect
-from .models import Item
+from .models import Item,Order
 from .forms import ItemForm
 from django.contrib.auth.decorators import login_required
 from django.views.generic.list import ListView
@@ -7,7 +7,7 @@ from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView,UpdateView,DeleteView
 from django.urls import reverse_lazy
 from django.core.paginator import Paginator
-from .serializers import ItemSerializer
+from .serializers import ItemSerializer,OrderSerializer
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
 from rest_framework import viewsets
@@ -18,6 +18,10 @@ from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.filters import OrderingFilter,SearchFilter
 # Create your views here.
 
+class OrderViewSet(viewsets.ModelViewSet):
+    queryset = Order.objects.all()
+    serializer_class = OrderSerializer
+    
 class ItemViewSet(viewsets.ModelViewSet):
     queryset = Item.objects.all()
     serializer_class = ItemSerializer

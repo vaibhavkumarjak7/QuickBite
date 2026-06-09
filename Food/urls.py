@@ -8,6 +8,7 @@ from rest_framework_simplejwt.views import (
 
 router = DefaultRouter()
 router.register(r"items",views.ItemViewSet,basename='item')
+router.register(r"orders",views.OrderViewSet,basename='order')
 
 app_name = 'Food'
 urlpatterns = [

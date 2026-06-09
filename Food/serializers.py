@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Item
+from .models import Item,Order
 from django.contrib.auth.models import User
 
 class UserSerializer(serializers.ModelSerializer):
@@ -23,3 +23,9 @@ class ItemSerializer(serializers.ModelSerializer):
             raise serializers.ValidationError("Item name and description must not be same")
         return data
         
+class OrderSerializer(serializers.ModelSerializer):
+    items = ItemSerializer(many=True,read_only=True)
+    user = serializers.StringRelatedField()
+    class Meta:
+        model = Order
+        fields = ["id","user","ordered_at","items"]

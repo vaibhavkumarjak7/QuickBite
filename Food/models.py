@@ -34,3 +34,11 @@ class Item(models.Model):
         self.is_deleted=True
         self.deleted_at=timezone.now()
         self.save()
+        
+class Order(models.Model):
+    user = models.ForeignKey(User,on_delete=models.CASCADE)
+    ordered_at = models.DateTimeField(auto_now_add=True)
+    item = models.ManyToManyField(Item,related_name="orders")
+
+    def __str__(self):
+        return f"Order {self.id} by {self.user.username}"
