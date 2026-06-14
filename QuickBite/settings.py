@@ -35,6 +35,7 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     'rest_framework',
     'rest_framework.authtoken',
+    'drf_spectacular',
     'django_filters',
     'users.apps.UsersConfig',
     'Food.apps.FoodConfig',
@@ -155,8 +156,16 @@ MEDIA_ROOT = os.path.join(BASE_DIR,'pictures')
 
 MEDIA_URL = '/pictures/'
 
+SPECTACULAR_SETTINGS = {
+    'TITLE': 'QuickBite API',
+    'DESCRIPTION': 'Desc',
+    'VERSION': '1.0.0',
+    'SERVE_INCLUDE_SCHEMA': 'False',
+}
+
 REST_FRAMEWORK = {
-    "DEFAULT_THROTTLE_CLASSES":[
+    "DEFAULT_SCHEMA_CLASS" : 'drf_spectacular.openapi.AutoSchema',
+    "DEFAULT_THROTTLE_CLASSES" : [
         "rest_framework.throttling.AnonRateThrottle",
         "rest_framework.throttling.UserRateThrottle",
     ],
