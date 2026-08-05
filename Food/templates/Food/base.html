@@ -8,9 +8,16 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet" />
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-    <title>{% block title %}QuickBite | Good food, fast{% endblock %}</title>
+    <title>
+      {% block title %}
+        QuickBite | Good food, fast
+      {% endblock %}
+    </title>
     <style type="text/tailwindcss">
-      @theme { --font-sans: "DM Sans", sans-serif; --font-display: "Playfair Display", serif; }
+      @theme {
+        --font-sans: 'DM Sans', sans-serif;
+        --font-display: 'Playfair Display', serif;
+      }
     </style>
   </head>
   <body class="min-h-screen bg-[#fffaf4] font-sans text-slate-800 antialiased">
@@ -46,10 +53,13 @@
     {% endif %}
 
     {% block body %}
+
     {% endblock %}
     <footer class="border-t border-orange-100 bg-white/70">
       <div class="mx-auto flex max-w-7xl flex-col gap-2 px-5 py-7 text-sm text-slate-500 sm:flex-row sm:items-center sm:justify-between sm:px-8">
-        <p><span class="font-bold text-slate-800">QuickBite</span> &mdash; a little joy in every order.</p>
+        <p>
+          <span class="font-bold text-slate-800">QuickBite</span> &mdash; a little joy in every order.
+        </p>
         <p>Fresh picks. Fast bites.</p>
       </div>
     </footer>

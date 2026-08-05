@@ -1,5 +1,17 @@
 {% extends "Food/base.html" %}
 {% block title %}Delete item | QuickBite{% endblock %}
 {% block body %}
-<main class="mx-auto max-w-lg px-5 py-16"><section class="rounded-3xl border border-rose-100 bg-white p-8 text-center shadow-xl shadow-rose-100/40"><div class="mx-auto grid h-16 w-16 place-items-center rounded-2xl bg-rose-100 text-2xl font-bold text-rose-600">!</div><p class="mt-6 text-sm font-bold uppercase tracking-[0.2em] text-rose-500">Permanent action</p><h1 class="mt-2 font-display text-4xl font-bold text-slate-950">Delete {{ object.item_name }}?</h1><p class="mt-4 leading-7 text-slate-500">This removes the item from the menu. You cannot undo this action.</p><form method="POST" class="mt-8 flex flex-col gap-3 sm:flex-row sm:justify-center">{% csrf_token %}<a href="{% url 'Food:detail' object.id %}" class="rounded-xl border border-slate-200 px-5 py-3 font-bold text-slate-700 transition hover:bg-slate-50">Keep item</a><button type="submit" class="rounded-xl bg-rose-600 px-5 py-3 font-bold text-white transition hover:bg-rose-700">Yes, delete it</button></form></section></main>
+<main class="mx-auto max-w-lg px-5 py-16">
+    <section class="rounded-3xl border border-rose-100 bg-white p-8 text-center shadow-xl shadow-rose-100/40">
+        <div class="mx-auto grid h-16 w-16 place-items-center rounded-2xl bg-rose-100 text-2xl font-bold text-rose-600">!</div>
+        <p class="mt-6 text-sm font-bold uppercase tracking-[0.2em] text-rose-500">Permanent action</p>
+        <h1 class="mt-2 font-display text-4xl font-bold text-slate-950">Delete {{ object.item_name }}?</h1>
+        <p class="mt-4 leading-7 text-slate-500">This removes the item from the menu. You cannot undo this action.</p>
+        <form method="POST" class="mt-8 flex flex-col gap-3 sm:flex-row sm:justify-center">
+        {% csrf_token %}
+            <a href="{% url 'Food:detail' object.id %}" class="rounded-xl border border-slate-200 px-5 py-3 font-bold text-slate-700 transition hover:bg-slate-50">Keep item</a>0
+            <button type="submit" class="rounded-xl bg-rose-600 px-5 py-3 font-bold text-white transition hover:bg-rose-700">Yes, delete it</button>
+        </form>
+    </section>
+</main>
 {% endblock %}

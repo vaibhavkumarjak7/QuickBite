@@ -14,6 +14,7 @@ db.sqlite3
 staticfiles/
 static/
 media/
+pictures/
 
 # VSCode / IDEs
 .vscode/

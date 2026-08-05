@@ -46,7 +46,7 @@ class ItemViewSet(viewsets.ModelViewSet):
 @login_required
 def index(request):
     item_list = Item.objects.all()
-    paginator = Paginator(item_list,5)
+    paginator = Paginator(item_list,6)
     page_number = request.GET.get("page")
     page_obj = paginator.get_page(page_number)
     context = {
