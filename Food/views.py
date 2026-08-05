@@ -5,7 +5,6 @@ from django.shortcuts import get_object_or_404, render, redirect
 from .models import Item,Order
 from .forms import ItemForm
 from django.contrib.auth.decorators import login_required
-from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import UpdateView,DeleteView
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
@@ -13,11 +12,8 @@ from django.core.exceptions import PermissionDenied
 from django.urls import reverse_lazy
 from django.core.paginator import Paginator
 from .serializers import ItemSerializer,OrderSerializer
-from rest_framework.response import Response
-from rest_framework.decorators import api_view
 from rest_framework import viewsets
 from rest_framework.permissions import IsAuthenticated, IsAuthenticatedOrReadOnly
-from rest_framework.authentication import TokenAuthentication
 from .permissions import IsOwnerOrReadOnly, IsStaffOrReadOnly
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.filters import OrderingFilter,SearchFilter
@@ -38,7 +34,6 @@ class OrderViewSet(viewsets.ModelViewSet):
 class ItemViewSet(viewsets.ModelViewSet):
     queryset = Item.objects.all()
     serializer_class = ItemSerializer
-    # authentication_classes = [TokenAuthentication]
     permission_classes = [IsStaffOrReadOnly, IsOwnerOrReadOnly]
     filter_backends = [DjangoFilterBackend,OrderingFilter,SearchFilter]
     filterset_fields = ["item_name","item_price"]
@@ -48,33 +43,6 @@ class ItemViewSet(viewsets.ModelViewSet):
     def perform_create(self, serializer):
         serializer.save(user_name=self.request.user)
     
-@api_view(["GET", "POST"])
-def item_list_api(request):
-    if request.method=="GET":
-        items = Item.objects.all()
-        serializer = ItemSerializer(items,many=True)
-        return Response(serializer.data)
-    elif request.method=="POST":
-        serializer = ItemSerializer(data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data)
-
-@api_view(["GET","PUT","DELETE"])
-def item_detail_api(request,pk):
-    item =  Item.objects.get(pk=pk)
-    if request.method=="GET":
-        serializer = ItemSerializer(item)
-        return Response(serializer.data)
-    elif request.method=="PUT":
-        serializer = ItemSerializer(item,data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data)
-    elif request.method=="DELETE":
-        item.delete()
-        return Response({"message":"Item Deleted"})
-
 @login_required
 def index(request):
     item_list = Item.objects.all()
@@ -85,18 +53,6 @@ def index(request):
         'page_obj': page_obj,
     }
     return render(request, 'Food/index.html', context)
-
-class IndexClassView(ListView):
-    model = Item
-    template_name = 'Food/index.html'
-    context_object_name = 'item_list'
-
-# def detail(request,id):
-#     item = Item.objects.get(pk=id)
-#     context = {
-#         'item':item,
-#     }
-#     return render(request,'Food/detail.html',context)
 
 class FoodDetail(DetailView):
     model = Item
@@ -198,28 +154,6 @@ def order_history(request):
     orders = Order.objects.filter(user=request.user).prefetch_related("item").order_by("-ordered_at")
     return render(request, "Food/order_history.html", {"orders": orders})
 
-# class ItemCreateView(CreateView):
-#     model = Item
-#     fields = ['item_name','item_desc','item_price','item_image']
-    
-#     def form_valid(self,form):
-#         form.instance.user_name = self.request.user
-#         return super().form_valid(form)
-
-# def update_item(request,id):
-#     item = Item.objects.get(id=id)
-#     form = ItemForm(request.POST or None,instance=item)
-    
-#     if form.is_valid():
-#         form.save()
-#         return redirect("Food:index")
-    
-#     context = {
-#         'form':form
-#     }
-    
-#     return render(request, 'Food/item-form.html',context)
-
 class StaffRequiredMixin(LoginRequiredMixin, UserPassesTestMixin):
     raise_exception = True
 
@@ -234,14 +168,6 @@ class ItemUpdateView(StaffRequiredMixin, UpdateView):
     
     def get_queryset(self):
         return Item.objects.filter(user_name=self.request.user)
-
-def delete_item(request,id):
-    item = Item.objects.get(id=id)
-    if request.method=='POST':
-        item.delete()
-        return redirect('Food:index')
-    
-    return render(request, 'Food/item-delete.html')
 
 class ItemDelete(StaffRequiredMixin, DeleteView):
     model = Item
