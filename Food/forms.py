@@ -10,7 +10,7 @@ class ItemForm(forms.ModelForm):
             "item_name":forms.TextInput(attrs={"placeholder":"e.g. Margherita Pizza", "required":True}),
             "item_desc":forms.Textarea(attrs={"placeholder":"Fresh and spicy","required":True}),
             "item_price":forms.NumberInput(attrs={"placeholder":"30","required":True}),
-            "item_image":forms.URLInput(attrs={"placeholder":"https://www.google.com","required":False}),
+            "item_image":forms.ClearableFileInput(attrs={"accept":"image/*"}),
         }
         
     def clean_item_price(self):

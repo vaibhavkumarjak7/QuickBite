@@ -4,33 +4,54 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0 shrink-to-fit=no" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet" />
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-    <title>QuickBite - Food</title>
+    <title>{% block title %}QuickBite | Good food, fast{% endblock %}</title>
+    <style type="text/tailwindcss">
+      @theme { --font-sans: "DM Sans", sans-serif; --font-display: "Playfair Display", serif; }
+    </style>
   </head>
-  <body>
-    <nav class="bg-blue-600 text-white">
-      <div class="flex justify-between px-2 py-4">
-        <a href="#" class="font-bold text-2xl">QuickBite</a>
-        <div class="space-x-6">
-          <a href="{% url 'users:profile' %}">Welcome {{user.first_name}} !</a>
+  <body class="min-h-screen bg-[#fffaf4] font-sans text-slate-800 antialiased">
+    <nav class="sticky top-0 z-20 border-b border-orange-100/80 bg-[#fffaf4]/90 backdrop-blur-lg">
+      <div class="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-4 px-5 py-4 sm:px-8">
+        <a href="{% url 'Food:index' %}" class="group flex items-center gap-2 text-2xl font-extrabold tracking-tight text-slate-950">
+          <span class="grid h-9 w-9 place-items-center rounded-xl bg-orange-500 text-lg text-white shadow-lg shadow-orange-200 transition group-hover:-rotate-6">Q</span>
+          Quick<span class="text-orange-500">Bite</span>
+        </a>
+        <div class="flex flex-wrap items-center justify-end gap-x-5 gap-y-2 text-sm font-bold text-slate-600 sm:gap-x-6">
           {% if user.is_authenticated %}
-            <a href="{% url 'users:logout' %}">Logout</a>
+            {% if user.is_staff %}
+              <a href="{% url 'Food:create_item' %}" class="transition hover:text-orange-600">Add item</a>
+            {% endif %}
+            <a href="{% url 'Food:cart' %}" class="transition hover:text-orange-600">Cart</a>
+            <a href="{% url 'Food:order_history' %}" class="transition hover:text-orange-600">Orders</a>
+            <a href="{% url 'users:profile' %}" class="hidden transition hover:text-orange-600 sm:block">Hi, {{ user.first_name|default:user.username }}</a>
+            <a href="{% url 'users:logout' %}" class="rounded-lg border border-slate-200 px-3 py-2 transition hover:border-orange-200 hover:bg-orange-50 hover:text-orange-700">Logout</a>
           {% else %}
-            <a href="{% url 'users:login' %}">Login</a>
+            <a href="{% url 'users:login' %}" class="transition hover:text-orange-600">Login</a>
+            <a href="{% url 'users:register' %}" class="rounded-lg bg-slate-900 px-4 py-2 text-white shadow-lg shadow-slate-200 transition hover:-translate-y-0.5 hover:bg-orange-500">Sign up</a>
           {% endif %}
         </div>
       </div>
     </nav>
 
     {% if messages %}
-      {% for message in messages %}
-        <div class="bg-green-500 text-white">
-          {{message}}
-        </div>
-      {% endfor %}
+      <div class="fixed inset-x-0 top-20 z-30 mx-auto max-w-xl px-5">
+        {% for message in messages %}
+          <div class="mb-3 rounded-xl border border-emerald-200 bg-emerald-50 px-4 py-3 text-sm font-semibold text-emerald-800 shadow-lg shadow-emerald-100">{{ message }}</div>
+        {% endfor %}
+      </div>
     {% endif %}
 
     {% block body %}
     {% endblock %}
+    <footer class="border-t border-orange-100 bg-white/70">
+      <div class="mx-auto flex max-w-7xl flex-col gap-2 px-5 py-7 text-sm text-slate-500 sm:flex-row sm:items-center sm:justify-between sm:px-8">
+        <p><span class="font-bold text-slate-800">QuickBite</span> &mdash; a little joy in every order.</p>
+        <p>Fresh picks. Fast bites.</p>
+      </div>
+    </footer>
   </body>
 </html>

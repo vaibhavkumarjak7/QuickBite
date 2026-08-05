@@ -24,8 +24,14 @@ class ItemSerializer(serializers.ModelSerializer):
         return data
         
 class OrderSerializer(serializers.ModelSerializer):
-    items = ItemSerializer(many=True,read_only=True)
-    user = serializers.StringRelatedField()
+    items = ItemSerializer(source="item", many=True, read_only=True)
+    item_ids = serializers.PrimaryKeyRelatedField(
+        source="item",
+        many=True,
+        queryset=Item.objects.filter(is_available=True),
+        write_only=True,
+    )
+    user = serializers.StringRelatedField(read_only=True)
     class Meta:
         model = Order
-        fields = ["id","user","ordered_at","items"]
+        fields = ["id","user","ordered_at","items","item_ids"]
