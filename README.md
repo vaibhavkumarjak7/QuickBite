@@ -235,6 +235,7 @@ Building QuickBite helped me strengthen my understanding of:
 ## 📸 Demo
 
 A complete demo of the application is available in the project presentation/video.
+https://www.linkedin.com/posts/vaibhav-kumar-718ba7214_django-python-fullstackdevelopment-ugcPost-7492182657817174018-PFt2/?utm_source=social_share_send&utm_medium=member_desktop_web&rcm=ACoAADZIIUQBo0Bii5i76UkfgP-cHjl3Z4HbbRc
 
 ## 🔗 Repository
 
