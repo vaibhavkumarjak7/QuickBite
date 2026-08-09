@@ -19,6 +19,13 @@ class LandingPageTests(TestCase):
 
         self.assertEqual(response.status_code, 200)
 
+    def test_htmx_menu_request_returns_only_menu_results(self):
+        response = self.client.get(reverse("Food:index"), HTTP_HX_REQUEST="true")
+
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, "Food/partials/menu_results.html")
+        self.assertNotContains(response, "Made for hungry moments")
+
 
 class ItemWebFlowTests(TestCase):
     def setUp(self):

@@ -51,6 +51,8 @@ def index(request):
     context = {
         'page_obj': page_obj,
     }
+    if request.headers.get("HX-Request") == "true":
+        return render(request, "Food/partials/menu_results.html", context)
     return render(request, 'Food/index.html', context)
 
 class FoodDetail(DetailView):
