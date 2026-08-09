@@ -31,9 +31,11 @@
           {% if user.is_authenticated %}
             {% if user.is_staff %}
               <a href="{% url 'Food:create_item' %}" class="transition hover:text-orange-600">Add item</a>
+              <a href="{% url 'Food:received_orders' %}" class="transition hover:text-orange-600">Orders received</a>
+            {% else %}
+              <a href="{% url 'Food:cart' %}" class="transition hover:text-orange-600">Cart</a>
+              <a href="{% url 'Food:order_history' %}" class="transition hover:text-orange-600">Orders</a>
             {% endif %}
-            <a href="{% url 'Food:cart' %}" class="transition hover:text-orange-600">Cart</a>
-            <a href="{% url 'Food:order_history' %}" class="transition hover:text-orange-600">Orders</a>
             <a href="{% url 'users:profile' %}" class="hidden transition hover:text-orange-600 sm:block">Hi, {{ user.first_name|default:user.username }}</a>
             <a href="{% url 'users:logout' %}" class="rounded-lg border border-slate-200 px-3 py-2 transition hover:border-orange-200 hover:bg-orange-50 hover:text-orange-700">Logout</a>
           {% else %}

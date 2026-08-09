@@ -43,7 +43,6 @@ class ItemViewSet(viewsets.ModelViewSet):
     def perform_create(self, serializer):
         serializer.save(user_name=self.request.user)
     
-@login_required
 def index(request):
     item_list = Item.objects.all()
     paginator = Paginator(item_list,6)
@@ -153,6 +152,31 @@ def checkout(request):
 def order_history(request):
     orders = Order.objects.filter(user=request.user).prefetch_related("item").order_by("-ordered_at")
     return render(request, "Food/order_history.html", {"orders": orders})
+
+
+@login_required
+def received_orders(request):
+    if not request.user.is_staff:
+        raise PermissionDenied
+
+    orders = Order.objects.select_related("user").prefetch_related("item").order_by("-ordered_at")
+    return render(request, "Food/received_orders.html", {"orders": orders})
+
+
+@login_required
+def complete_order(request, pk):
+    if not request.user.is_staff:
+        raise PermissionDenied
+    if request.method != "POST":
+        return redirect("Food:received_orders")
+
+    order = get_object_or_404(Order, pk=pk)
+    if order.status == Order.Status.PENDING:
+        order.status = Order.Status.COMPLETED
+        order.save(update_fields=["status"])
+        messages.success(request, f"Order #{order.id} is marked as completed.")
+    return redirect("Food:received_orders")
+
 
 class StaffRequiredMixin(LoginRequiredMixin, UserPassesTestMixin):
     raise_exception = True

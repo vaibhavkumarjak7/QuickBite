@@ -36,9 +36,14 @@ class Item(models.Model):
         self.save()
         
 class Order(models.Model):
+    class Status(models.TextChoices):
+        PENDING = "pending", "Pending"
+        COMPLETED = "completed", "Completed"
+
     user = models.ForeignKey(User,on_delete=models.CASCADE)
     ordered_at = models.DateTimeField(auto_now_add=True)
     item = models.ManyToManyField(Item,related_name="orders")
+    status = models.CharField(max_length=10, choices=Status.choices, default=Status.PENDING)
 
     def __str__(self):
         return f"Order {self.id} by {self.user.username}"

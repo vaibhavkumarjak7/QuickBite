@@ -34,4 +34,5 @@ class OrderSerializer(serializers.ModelSerializer):
     user = serializers.StringRelatedField(read_only=True)
     class Meta:
         model = Order
-        fields = ["id","user","ordered_at","items","item_ids"]
+        fields = ["id","user","ordered_at","status","items","item_ids"]
+        read_only_fields = ["status"]

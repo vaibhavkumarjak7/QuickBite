@@ -8,6 +8,18 @@ from rest_framework.test import APIClient
 from .models import Item, Order
 
 
+class LandingPageTests(TestCase):
+    def test_root_redirects_to_the_public_menu(self):
+        response = self.client.get("/")
+
+        self.assertRedirects(response, reverse("Food:index"))
+
+    def test_anonymous_visitor_can_view_the_menu(self):
+        response = self.client.get(reverse("Food:index"))
+
+        self.assertEqual(response.status_code, 200)
+
+
 class ItemWebFlowTests(TestCase):
     def setUp(self):
         self.owner = User.objects.create_user(
@@ -175,3 +187,47 @@ class OrderApiTests(TestCase):
         response = self.client.get(reverse("Food:order-list"))
 
         self.assertEqual(response.status_code, 401)
+
+
+class StaffOrderManagementTests(TestCase):
+    def setUp(self):
+        self.staff_user = User.objects.create_user(
+            username="staff", password="test-password", is_staff=True
+        )
+        self.customer = User.objects.create_user(
+            username="customer", first_name="Asha", last_name="Sharma", email="asha@example.com", password="test-password"
+        )
+        self.item = Item.objects.create(
+            user_name=self.staff_user,
+            item_name="Tandoori wrap",
+            item_desc="Smoky tandoori filling with fresh vegetables",
+            item_price=Decimal("220.00"),
+        )
+        self.order = Order.objects.create(user=self.customer)
+        self.order.item.add(self.item)
+
+    def test_staff_can_view_received_orders_with_customer_details(self):
+        self.client.force_login(self.staff_user)
+
+        response = self.client.get(reverse("Food:received_orders"))
+
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, "Asha Sharma")
+        self.assertContains(response, "asha@example.com")
+        self.assertContains(response, "Tandoori wrap")
+
+    def test_staff_can_mark_a_pending_order_as_completed(self):
+        self.client.force_login(self.staff_user)
+
+        response = self.client.post(reverse("Food:complete_order", args=[self.order.pk]))
+
+        self.assertRedirects(response, reverse("Food:received_orders"))
+        self.order.refresh_from_db()
+        self.assertEqual(self.order.status, Order.Status.COMPLETED)
+
+    def test_regular_customer_cannot_access_received_orders(self):
+        self.client.force_login(self.customer)
+
+        response = self.client.get(reverse("Food:received_orders"))
+
+        self.assertEqual(response.status_code, 403)
